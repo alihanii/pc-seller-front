@@ -112,7 +112,7 @@ export function CheckoutPage() {
                 {addresses.map((a) => (
                   <Choice key={a.id} selected={a.id === address?.id} onSelect={() => { setAddressId(a.id); setShippingId(null) }}>
                     <span className="flex items-center gap-2 font-black">
-                      <MapPin className="size-4 text-blue" />{a.title || a.recipient_name}
+                      <MapPin className="size-4 text-blue-ink" />{a.title || a.recipient_name}
                       {a.is_default && <span className="rounded border border-line px-1.5 text-[11px]">پیش‌فرض</span>}
                     </span>
                     <span className="mt-1 block text-sm leading-6 text-muted">{a.full_address}</span>
@@ -179,8 +179,8 @@ export function CheckoutPage() {
               <SummaryRows
                 rows={[
                   ['قیمت کالاها', cart.subtotal + cart.items_discount],
-                  ...(cart.items_discount ? [['تخفیف کالاها', cart.items_discount, 'text-red'] as [string, number, string]] : []),
-                  ...(cart.discount?.amount ? [['کد تخفیف', cart.discount.amount, 'text-red'] as [string, number, string]] : []),
+                  ...(cart.items_discount ? [['تخفیف کالاها', cart.items_discount, 'text-red-ink'] as [string, number, string]] : []),
+                  ...(cart.discount?.amount ? [['کد تخفیف', cart.discount.amount, 'text-red-ink'] as [string, number, string]] : []),
                   ['هزینه‌ی ارسال', shipping?.cost ?? 0],
                 ]}
                 total={total}

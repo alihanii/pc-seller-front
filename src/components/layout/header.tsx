@@ -26,7 +26,7 @@ export function Logo({ className }: { className?: string }) {
         PC
       </span>
       <span className="font-display text-xl leading-none">
-        پی‌سی<span className="text-blue">سلر</span>
+        پی‌سی<span className="text-blue-ink">سلر</span>
       </span>
     </Link>
   )
@@ -47,7 +47,7 @@ function CartButton() {
         <motion.span
           key={count}
           initial={{ scale: 0 }} animate={{ scale: 1 }}
-          className="absolute -top-2.5 -left-2.5 grid min-w-6 place-items-center rounded-full border-brutal-soft bg-red px-1 text-xs font-black text-white"
+          className="absolute -top-2.5 -left-2.5 grid min-w-6 place-items-center rounded-full border-brutal-soft bg-red px-1 text-xs font-black text-[#0a0a0a]"
         >
           {faNumber(count)}
         </motion.span>
@@ -68,7 +68,7 @@ export function Header() {
         <Marquee>
           {PROMOS.map((promo) => (
             <span key={promo} className="flex items-center gap-10 whitespace-nowrap">
-              {promo}<span className="text-yellow">✦</span>
+              {promo}<span className="text-yellow" aria-hidden>✦</span>
             </span>
           ))}
         </Marquee>

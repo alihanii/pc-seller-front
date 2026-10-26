@@ -44,7 +44,7 @@ export function StaticPage({ page }: { page: keyof typeof PAGES }) {
                 const I = Icon as typeof Phone
                 return (
                   <li key={i} className="flex items-center gap-2 rounded-brutal-sm border-brutal-soft bg-surface-2 p-3 text-sm font-bold">
-                    <I className="size-5 shrink-0 text-blue" /><span dir="auto">{text as string}</span>
+                    <I className="size-5 shrink-0 text-blue-ink" /><span dir="auto">{text as string}</span>
                   </li>
                 )
               })}

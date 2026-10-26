@@ -173,7 +173,7 @@ export function LoginPage() {
                       className="h-14 rounded-brutal-sm border-brutal bg-surface px-4 text-center font-display text-2xl tracking-[0.15em] shadow-brutal-sm placeholder:text-muted/40 focus:shadow-brutal focus:outline-none"
                     />
                   </label>
-                  {error && <p className="text-sm font-bold text-red" role="alert">{error}</p>}
+                  {error && <p className="text-sm font-bold text-red-ink" role="alert">{error}</p>}
                   <Button size="lg" type="submit" loading={busy} disabled={toEnDigits(mobile).replace(/\D/g, '').length < 10}>دریافت کد</Button>
                 </motion.form>
               ) : (
@@ -191,7 +191,7 @@ export function LoginPage() {
                       if (value.length === CODE_LENGTH) verify(value)
                     }}
                   />
-                  {error && <p className="text-center text-sm font-bold text-red" role="alert">{error}</p>}
+                  {error && <p className="text-center text-sm font-bold text-red-ink" role="alert">{error}</p>}
                   <Button size="lg" variant="blue" loading={busy} disabled={code.length < CODE_LENGTH} onClick={() => verify(code)}>ورود</Button>
                   <div className="flex items-center justify-between text-sm">
                     <button className="flex items-center gap-1 font-bold text-muted hover:text-ink" onClick={() => { setStep('mobile'); setError('') }}>
@@ -200,7 +200,7 @@ export function LoginPage() {
                     {wait > 0 ? (
                       <span className="font-bold tabular-nums text-muted">ارسال دوباره تا {faNumber(Math.floor(wait / 60))}:{toFaDigits(String(wait % 60).padStart(2, '0'))}</span>
                     ) : (
-                      <button className="font-black text-blue underline underline-offset-4" onClick={requestCode} disabled={busy}>ارسال دوباره‌ی کد</button>
+                      <button className="font-black text-blue-ink underline underline-offset-4" onClick={requestCode} disabled={busy}>ارسال دوباره‌ی کد</button>
                     )}
                   </div>
                 </motion.div>

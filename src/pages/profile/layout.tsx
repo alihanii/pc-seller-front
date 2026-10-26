@@ -60,7 +60,7 @@ export function ProfileLayout() {
               <Icon className="size-4.5" />{label}
             </NavLink>
           ))}
-          <button onClick={logout} className="flex shrink-0 items-center gap-2.5 rounded-md border-2 border-transparent px-3 py-2 text-sm font-bold text-red hover:bg-red/10">
+          <button onClick={logout} className="flex shrink-0 items-center gap-2.5 rounded-md border-2 border-transparent px-3 py-2 text-sm font-bold text-red-ink hover:bg-red/10">
             <LogOut className="size-4.5" />خروج
           </button>
         </nav>

@@ -34,27 +34,27 @@ function Line({ item }: { item: CartItem }) {
           <Link to={`/product/${item.product.slug}`} className="line-clamp-2 font-bold leading-6 hover:underline">{item.product.name}</Link>
           {item.options && <p className="text-xs font-bold text-muted">{item.options}</p>}
           {item.warning && (
-            <p className="flex items-center gap-1 text-xs font-black text-red"><AlertTriangle className="size-3.5" />{item.warning}</p>
+            <p className="flex items-center gap-1 text-xs font-black text-red-ink"><AlertTriangle className="size-3.5" />{item.warning}</p>
           )}
           <div className="mt-auto flex flex-wrap items-end justify-between gap-3">
-            <div className="flex h-10 items-center rounded-brutal-sm border-brutal-soft bg-surface" aria-label="تعداد">
-              <button className="grid h-full w-9 place-items-center hover:bg-surface-2" onClick={() => setQuantity(item.quantity + 1)} disabled={update.isPending} aria-label="افزایش">
+            <div className="flex h-11 items-center rounded-brutal-sm border-brutal-soft bg-surface" aria-label="تعداد">
+              <button className="grid h-full w-11 place-items-center hover:bg-surface-2" onClick={() => setQuantity(item.quantity + 1)} disabled={update.isPending} aria-label="افزایش">
                 <Plus className="size-4" />
               </button>
               <span className="w-7 text-center font-black tabular-nums">{faNumber(item.quantity)}</span>
               {item.quantity > 1 ? (
-                <button className="grid h-full w-9 place-items-center hover:bg-surface-2" onClick={() => setQuantity(item.quantity - 1)} disabled={update.isPending} aria-label="کاهش">
+                <button className="grid h-full w-11 place-items-center hover:bg-surface-2" onClick={() => setQuantity(item.quantity - 1)} disabled={update.isPending} aria-label="کاهش">
                   <Minus className="size-4" />
                 </button>
               ) : (
-                <button className="grid h-full w-9 place-items-center text-red hover:bg-red/10" onClick={() => remove.mutate(item.id)} aria-label="حذف">
+                <button className="grid h-full w-11 place-items-center text-red-ink hover:bg-red/10" onClick={() => remove.mutate(item.id)} aria-label="حذف">
                   <Trash2 className="size-4" />
                 </button>
               )}
             </div>
             <div className="text-left">
               {item.current_price < item.unit_price && (
-                <p className="text-xs font-bold text-red">{toman((item.unit_price - item.current_price) * item.quantity)} تومان تخفیف</p>
+                <p className="text-xs font-bold text-red-ink">{toman((item.unit_price - item.current_price) * item.quantity)} تومان تخفیف</p>
               )}
               <p className="font-display text-lg tabular-nums">
                 <NumberTicker value={rialToToman(item.line_total)} /> <span className="text-xs font-bold text-muted">تومان</span>
@@ -62,7 +62,7 @@ function Line({ item }: { item: CartItem }) {
             </div>
           </div>
         </div>
-        <button className="self-start text-muted hover:text-red" onClick={() => remove.mutate(item.id)} aria-label="حذف از سبد">
+        <button className="-m-2 grid size-11 place-items-center self-start text-muted hover:text-red-ink" onClick={() => remove.mutate(item.id)} aria-label="حذف از سبد">
           <X className="size-5" />
         </button>
       </Card>
@@ -77,9 +77,9 @@ export function DiscountBox({ cart }: { cart: Cart }) {
   if (cart.discount) {
     return (
       <div className="flex items-center justify-between gap-2 rounded-brutal-sm border-2 border-dashed border-green bg-green/10 px-3 py-2 text-sm">
-        <span className="flex items-center gap-1.5 font-black" dir="ltr"><TicketPercent className="size-4 text-green" />{cart.discount.code}</span>
-        {cart.discount.error && <span className="text-xs font-bold text-red">{cart.discount.error}</span>}
-        <button className="text-xs font-bold text-red underline" onClick={() => remove.mutate(undefined)}>حذف</button>
+        <span className="flex items-center gap-1.5 font-black" dir="ltr"><TicketPercent className="size-4 text-green-ink" />{cart.discount.code}</span>
+        {cart.discount.error && <span className="text-xs font-bold text-red-ink">{cart.discount.error}</span>}
+        <button className="text-xs font-bold text-red-ink underline" onClick={() => remove.mutate(undefined)}>حذف</button>
       </div>
     )
   }
@@ -155,13 +155,13 @@ export function CartPage() {
           <SummaryRows
             rows={[
               ['قیمت کالاها', cart.subtotal + cart.items_discount],
-              ...(cart.items_discount ? [['تخفیف کالاها', cart.items_discount, 'text-red'] as [string, number, string]] : []),
-              ...(cart.discount?.amount ? [['کد تخفیف', cart.discount.amount, 'text-red'] as [string, number, string]] : []),
+              ...(cart.items_discount ? [['تخفیف کالاها', cart.items_discount, 'text-red-ink'] as [string, number, string]] : []),
+              ...(cart.discount?.amount ? [['کد تخفیف', cart.discount.amount, 'text-red-ink'] as [string, number, string]] : []),
             ]}
             total={cart.total}
           />
           <DiscountBox cart={cart} />
-          {cart.has_problems && <p className="text-xs font-bold text-red">موجودی بعضی کالاها تغییر کرده؛ قبل از ادامه تعدادشان را اصلاح کنید.</p>}
+          {cart.has_problems && <p className="text-xs font-bold text-red-ink">موجودی بعضی کالاها تغییر کرده؛ قبل از ادامه تعدادشان را اصلاح کنید.</p>}
           <Button size="lg" disabled={cart.has_problems} onClick={() => navigate(access ? '/checkout' : '/login?next=/checkout')}>
             {access ? 'ادامه‌ی خرید' : 'ورود و ادامه‌ی خرید'} <ArrowLeft className="size-5" />
           </Button>

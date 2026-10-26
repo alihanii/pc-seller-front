@@ -172,7 +172,7 @@ function Purchase({ product, picker }: { product: ProductDetail; picker: ReturnT
         return (
           <div key={type.id}>
             <p className="mb-2 text-sm font-bold">
-              {type.name}: <span className="font-black text-blue">{chosen?.value ?? 'انتخاب کنید'}</span>
+              {type.name}: <span className="font-black text-blue-ink">{chosen?.value ?? 'انتخاب کنید'}</span>
             </p>
             <div className="flex flex-wrap gap-2.5">
               {type.options.map((option) => {
@@ -228,9 +228,9 @@ function Purchase({ product, picker }: { product: ProductDetail; picker: ReturnT
               <p className="flex items-center gap-2 text-sm font-bold">پایان تخفیف: <Countdown until={variant.discount_ends_at} /></p>
             )}
             <p className={cn('flex items-center gap-2 text-sm font-black', {
-              'text-green': variant.availability === 'in_stock',
+              'text-green-ink': variant.availability === 'in_stock',
               'text-[#c2410c] dark:text-[#fb923c]': variant.availability === 'low_stock',
-              'text-red': variant.availability === 'out_of_stock',
+              'text-red-ink': variant.availability === 'out_of_stock',
             })}>
               {variant.availability === 'out_of_stock' ? <PackageX className="size-5" /> : <PackageCheck className="size-5" />}
               {{ in_stock: 'موجود در انبار', low_stock: 'تعداد محدود؛ زود تمام می‌شود', out_of_stock: 'ناموجود' }[variant.availability]}
@@ -253,7 +253,7 @@ function Purchase({ product, picker }: { product: ProductDetail; picker: ReturnT
             <ShoppingCart className="size-5" /> {available ? 'افزودن به سبد' : 'ناموجود'}
           </Button>
           <Button variant="outline" size="icon" className="size-14" onClick={() => wishlist.toggle(product.id)} aria-pressed={liked} aria-label="علاقه‌مندی">
-            <Heart className={cn('size-6', liked && 'fill-red text-red')} />
+            <Heart className={cn('size-6', liked && 'fill-red text-red-ink')} />
           </Button>
         </div>
       </Card>
@@ -262,7 +262,7 @@ function Purchase({ product, picker }: { product: ProductDetail; picker: ReturnT
           const I = Icon as typeof Truck
           return (
             <li key={label as string} className="flex flex-col items-center gap-1.5 rounded-brutal-sm border-hairline bg-surface p-2.5">
-              <I className="size-5 text-blue" />{label as string}
+              <I className="size-5 text-blue-ink" />{label as string}
             </li>
           )
         })}
@@ -300,7 +300,7 @@ function Reviews({ product }: { product: ProductDetail }) {
                   <div className="flex flex-wrap items-center gap-2">
                     <Stars value={review.rating} />
                     {review.title && <strong className="font-black">{review.title}</strong>}
-                    {review.is_verified_buyer && <Chip className="bg-green/20"><BadgeCheck className="size-3.5 text-green" /> خریدار</Chip>}
+                    {review.is_verified_buyer && <Chip className="bg-green/20"><BadgeCheck className="size-3.5 text-green-ink" /> خریدار</Chip>}
                   </div>
                   <p className="mt-2 text-[15px] leading-7">{review.body}</p>
                   <p className="mt-2 text-xs text-muted">{review.author} · {jalaliDate(review.created_at)}</p>
@@ -334,7 +334,7 @@ function Reviews({ product }: { product: ProductDetail }) {
               {[1, 2, 3, 4, 5].map((n) => (
                 <button
                   type="button" key={n} role="radio" aria-checked={rating === n} onClick={() => setRating(n)}
-                  className={cn('grid size-10 place-items-center rounded-md border-2 border-line font-black transition-transform hover:-translate-y-0.5', n <= rating ? 'bg-yellow text-[#0a0a0a]' : 'bg-surface')}
+                  className={cn('grid size-11 place-items-center rounded-md border-2 border-line font-black transition-transform hover:-translate-y-0.5', n <= rating ? 'bg-yellow text-[#0a0a0a]' : 'bg-surface')}
                 >
                   {faNumber(n)}
                 </button>
@@ -345,7 +345,7 @@ function Reviews({ product }: { product: ProductDetail }) {
             <Button type="submit" variant="blue" loading={submit.isPending}>ثبت نظر</Button>
           </form>
         ) : (
-          <p className="text-sm text-muted">برای ثبت نظر <Link to={`/login?next=/product/${product.slug}`} className="font-black text-blue underline">وارد شوید</Link>.</p>
+          <p className="text-sm text-muted">برای ثبت نظر <Link to={`/login?next=/product/${product.slug}`} className="font-black text-blue-ink underline">وارد شوید</Link>.</p>
         )}
       </Card>
     </section>
@@ -360,7 +360,7 @@ export function ProductPage() {
   if (isError) {
     return (
       <Container className="pt-10">
-        <EmptyState icon={<PackageX />} title="این محصول پیدا نشد" action={<Link to="/" className="font-black text-blue underline">بازگشت به فروشگاه</Link>} />
+        <EmptyState icon={<PackageX />} title="این محصول پیدا نشد" action={<Link to="/" className="font-black text-blue-ink underline">بازگشت به فروشگاه</Link>} />
       </Container>
     )
   }
@@ -387,7 +387,7 @@ export function ProductPage() {
           <div className="flex flex-col gap-5">
             <div>
               {product.brand && (
-                <Link to={`/search?brand=${product.brand.slug}`} className="text-sm font-black tracking-wide text-blue uppercase" dir="ltr">{product.brand.name}</Link>
+                <Link to={`/search?brand=${product.brand.slug}`} className="text-sm font-black tracking-wide text-blue-ink uppercase" dir="ltr">{product.brand.name}</Link>
               )}
               <h1 className="mt-1 font-display text-2xl leading-snug sm:text-3xl">{product.name}</h1>
               {product.rating != null && (

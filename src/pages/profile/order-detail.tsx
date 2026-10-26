@@ -64,7 +64,7 @@ export function OrderDetailPage() {
             <div className="flex gap-2">
               <Button size="sm" onClick={() => navigate(`/payment/result?order=${order.number}&status=failed`)}><CreditCard className="size-4" /> پرداخت</Button>
               <Button
-                size="sm" variant="ghost" className="text-red" loading={cancel.isPending}
+                size="sm" variant="ghost" className="text-red-ink" loading={cancel.isPending}
                 onClick={() => cancel.mutate(order.number, {
                   onSuccess: () => toast('سفارش لغو شد و کالاها آزاد شدند.'),
                   onError: (e) => toast.error(errorMessage(e)),
@@ -91,7 +91,7 @@ export function OrderDetailPage() {
                 </div>
                 <div className="whitespace-nowrap text-left text-sm tabular-nums">
                   <p>{faNumber(item.quantity)} × {toman(item.final_unit_price)} ت</p>
-                  {item.unit_discount > 0 && <p className="text-xs text-red line-through">{toman(item.unit_price)} ت</p>}
+                  {item.unit_discount > 0 && <p className="text-xs text-red-ink line-through">{toman(item.unit_price)} ت</p>}
                 </div>
                 <p className="min-w-28 whitespace-nowrap text-left font-black tabular-nums">{toman(item.line_total)} ت</p>
               </li>
@@ -101,7 +101,7 @@ export function OrderDetailPage() {
             <SummaryRows
               rows={[
                 ['جمع کالاها', order.subtotal],
-                ...(order.discount_amount ? [[`کد تخفیف ${order.discount_code_text}`, order.discount_amount, 'text-red'] as [string, number, string]] : []),
+                ...(order.discount_amount ? [[`کد تخفیف ${order.discount_code_text}`, order.discount_amount, 'text-red-ink'] as [string, number, string]] : []),
                 ['هزینه‌ی ارسال', order.shipping.cost],
               ]}
               total={order.total}

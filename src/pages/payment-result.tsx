@@ -68,7 +68,7 @@ export function PaymentResultPage() {
             initial={{ scale: 0, rotate: -30 }} animate={{ scale: 1, rotate: -6 }} transition={{ type: 'spring', stiffness: 380, damping: 14 }}
             className="grid size-20 place-items-center rounded-2xl border-brutal bg-surface text-ink shadow-brutal"
           >
-            {success ? <CheckCircle2 className="size-10 text-green" /> : <XCircle className="size-10 text-red" />}
+            {success ? <CheckCircle2 className="size-10 text-green-ink" /> : <XCircle className="size-10 text-red-ink" />}
           </motion.span>
           <h1 className="font-display text-2xl text-[#0a0a0a]">
             {success ? 'پرداخت موفق بود!' : needsRefund ? 'پرداخت نیاز به بررسی دارد' : 'پرداخت انجام نشد'}

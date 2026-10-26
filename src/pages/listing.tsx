@@ -128,7 +128,7 @@ export function ListingPage() {
                   {chip.label} <X className="size-3.5" />
                 </button>
               ))}
-              <button onClick={() => setParams(query ? { q: query } : {})} className="text-xs font-bold text-red underline underline-offset-4">حذف همه</button>
+              <button onClick={() => setParams(query ? { q: query } : {})} className="text-xs font-bold text-red-ink underline underline-offset-4">حذف همه</button>
             </div>
           )}
 

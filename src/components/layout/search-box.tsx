@@ -66,7 +66,7 @@ export function SearchBox({ className, onDone }: { className?: string; onDone?: 
           className="h-full min-w-0 flex-1 bg-transparent text-[15px] font-medium outline-none placeholder:text-muted/70"
         />
         {isFetching && debounced.length >= 2 && <Loader2 className="size-4 animate-spin text-muted" />}
-        <button type="submit" className="h-9 rounded-md border-brutal-soft bg-yellow px-3 text-sm font-black text-[#0a0a0a] transition-transform active:translate-y-0.5">
+        <button type="submit" className="h-10 rounded-md border-brutal-soft bg-yellow px-3.5 text-sm font-black text-[#0a0a0a] transition-transform active:translate-y-0.5">
           بگرد
         </button>
       </form>

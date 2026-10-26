@@ -39,7 +39,7 @@ export function ProductCard({ product, className }: { product: Product; classNam
         )}
         <div className="mt-3 flex flex-1 flex-col gap-1.5">
           <div className="flex items-center justify-between gap-2 text-xs">
-            {product.brand && <span className="font-black text-blue uppercase" dir="ltr">{product.brand.name}</span>}
+            {product.brand && <span className="font-black text-blue-ink uppercase" dir="ltr">{product.brand.name}</span>}
             {product.rating != null && (
               <span className="flex items-center gap-1 text-muted"><Stars value={product.rating} size={12} />({faNumber(product.rating_count)})</span>
             )}
@@ -57,9 +57,9 @@ export function ProductCard({ product, className }: { product: Product; classNam
         onClick={() => wishlist.toggle(product.id)}
         aria-label={liked ? 'حذف از علاقه‌مندی‌ها' : 'افزودن به علاقه‌مندی‌ها'}
         aria-pressed={liked}
-        className="absolute top-5 left-5 grid size-9 place-items-center rounded-full border-brutal-soft bg-surface shadow-brutal-sm transition-transform hover:scale-110 active:scale-90"
+        className="absolute top-5 left-5 grid size-11 place-items-center rounded-full border-brutal-soft bg-surface shadow-brutal-sm transition-transform hover:scale-110 active:scale-90"
       >
-        <Heart className={cn('size-4.5 transition-colors', liked ? 'fill-red text-red' : 'text-ink')} />
+        <Heart className={cn('size-4.5 transition-colors', liked ? 'fill-red text-red-ink' : 'text-ink')} />
       </button>
     </motion.article>
   )

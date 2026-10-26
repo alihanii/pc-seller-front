@@ -13,18 +13,18 @@ export const buttonVariants = cva(
     variants: {
       variant: {
         primary: 'bg-yellow text-[#0a0a0a]',
-        blue: 'bg-blue text-white',
+        blue: 'bg-blue text-on-blue',
         dark: 'bg-ink text-bg',
         outline: 'bg-surface text-ink',
-        danger: 'bg-red text-white',
+        danger: 'bg-red text-[#0a0a0a]',
         ghost: 'border-transparent bg-transparent shadow-none hover:translate-0 hover:bg-surface-2 hover:shadow-none active:translate-0',
       },
       size: {
-        sm: 'h-9 px-3 text-sm',
+        sm: 'h-10 px-3.5 text-sm',
         md: 'h-11 px-5 text-[15px]',
         lg: 'h-14 px-7 text-lg',
         icon: 'size-11 p-0',
-        'icon-sm': 'size-9 p-0',
+        'icon-sm': 'size-11 p-0 sm:size-10',
       },
     },
     defaultVariants: { variant: 'primary', size: 'md' },

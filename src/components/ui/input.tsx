@@ -28,7 +28,7 @@ export function Field({ label, error, hint, children, className }: {
     <label className={cn('flex flex-col gap-1.5', className)}>
       <span className="text-sm font-bold">{label}</span>
       {children}
-      {error ? <span className="text-xs font-bold text-red">{error}</span> : hint && <span className="text-xs text-muted">{hint}</span>}
+      {error ? <span className="text-xs font-bold text-red-ink">{error}</span> : hint && <span className="text-xs text-muted">{hint}</span>}
     </label>
   )
 }

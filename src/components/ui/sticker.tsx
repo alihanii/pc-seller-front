@@ -4,8 +4,8 @@ import { cn } from '@/lib/utils'
 
 const tones = {
   yellow: 'bg-yellow text-[#0a0a0a]',
-  red: 'bg-red text-white',
-  blue: 'bg-blue text-white',
+  red: 'bg-red text-[#0a0a0a]',
+  blue: 'bg-blue text-on-blue',
   pink: 'bg-pink text-[#0a0a0a]',
   green: 'bg-green text-[#0a0a0a]',
   cyan: 'bg-cyan text-[#0a0a0a]',

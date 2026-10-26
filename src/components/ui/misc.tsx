@@ -39,7 +39,7 @@ export function SectionTitle({ title, kicker, action, className }: {
   return (
     <div className={cn('mb-5 flex items-end justify-between gap-4', className)}>
       <div>
-        {kicker && <span className="mb-1 block text-xs font-black tracking-widest text-blue uppercase">{kicker}</span>}
+        {kicker && <span className="mb-1 block text-xs font-black tracking-widest text-blue-ink uppercase">{kicker}</span>}
         <h2 className="font-display text-2xl sm:text-3xl">
           <span className="bg-[linear-gradient(transparent_62%,var(--c-yellow)_62%)] px-1">{title}</span>
         </h2>

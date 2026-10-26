@@ -3,11 +3,11 @@ import type { OrderStatus } from './types'
 export const ORDER_STATUS_TONE: Record<OrderStatus, string> = {
   awaiting_payment: 'bg-yellow text-[#0a0a0a]',
   paid: 'bg-cyan text-[#0a0a0a]',
-  processing: 'bg-blue text-white',
+  processing: 'bg-blue text-on-blue',
   shipped: 'bg-pink text-[#0a0a0a]',
   delivered: 'bg-green text-[#0a0a0a]',
   cancelled: 'bg-surface-2 text-muted',
-  returned: 'bg-red text-white',
+  returned: 'bg-red text-[#0a0a0a]',
 }
 
 export const ORDER_FILTERS: [string, string][] = [

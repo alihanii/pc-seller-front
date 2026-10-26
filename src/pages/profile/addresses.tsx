@@ -36,7 +36,7 @@ export function AddressesPage() {
             <motion.li key={address.id} layout initial={{ opacity: 0, scale: 0.95 }} animate={{ opacity: 1, scale: 1 }} exit={{ opacity: 0, scale: 0.9 }}>
               <Card tone="calm" className="relative flex h-full flex-col gap-2 p-4">
                 {address.is_default && <Sticker tone="yellow" tilt={6} wobble={false} className="absolute -top-3 left-4">پیش‌فرض</Sticker>}
-                <p className="flex items-center gap-2 font-black"><MapPin className="size-4 text-blue" />{address.title || 'آدرس'}</p>
+                <p className="flex items-center gap-2 font-black"><MapPin className="size-4 text-blue-ink" />{address.title || 'آدرس'}</p>
                 <p className="text-sm leading-6">{address.full_address}</p>
                 <p className="text-xs text-muted">
                   {address.recipient_name} · <bdi>{toFaDigits(address.recipient_mobile)}</bdi> · کد پستی <bdi>{toFaDigits(address.postal_code)}</bdi>
@@ -47,7 +47,7 @@ export function AddressesPage() {
                     <Button size="sm" variant="outline" onClick={() => setDefault.mutate(address.id)}><Star className="size-3.5" /> پیش‌فرض</Button>
                   )}
                   <Button
-                    size="sm" variant="ghost" className="text-red"
+                    size="sm" variant="ghost" className="text-red-ink"
                     onClick={() => remove.mutate(address.id, { onSuccess: () => toast('آدرس حذف شد') })}
                   >
                     <Trash2 className="size-3.5" /> حذف

@@ -77,7 +77,7 @@ function HeroSlider({ banners }: { banners: Banner[] }) {
             aria-selected={i === index}
             aria-label={b.title}
             onClick={() => setIndex(i)}
-            className={cn('h-3 rounded-sm border-2 border-black transition-all duration-200', i === index ? 'w-9 bg-yellow' : 'w-3 bg-white/80 hover:bg-white')}
+            className={cn("relative h-3 rounded-sm border-2 border-black transition-all duration-200 after:absolute after:-inset-3 after:content-['']", i === index ? 'w-9 bg-yellow' : 'w-3 bg-white/80 hover:bg-white')}
           />
         ))}
       </div>
@@ -151,7 +151,7 @@ function BrandStrip() {
     <section className="-mx-4 rotate-[-1.2deg] border-y-[length:var(--bw)] border-line bg-yellow py-4 text-[#0a0a0a]">
       <Marquee>
         {brands.map((brand) => (
-          <Link key={brand.id} to={`/search?brand=${brand.slug}`} className="whitespace-nowrap text-2xl font-black tracking-tight uppercase hover:text-blue" dir="ltr">
+          <Link key={brand.id} to={`/search?brand=${brand.slug}`} className="whitespace-nowrap text-2xl font-black tracking-tight uppercase hover:text-blue-ink" dir="ltr">
             {brand.name} <span aria-hidden>✦</span>
           </Link>
         ))}
