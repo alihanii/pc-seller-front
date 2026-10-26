@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useState } from 'react'
 
 import { Checkbox } from '@/components/ui/checkbox'
 import { RangeSlider } from '@/components/ui/slider'
@@ -37,7 +37,6 @@ function Range({ min, max, low, high, step, format, onCommit }: {
   onCommit: (low: number, high: number) => void
 }) {
   const [value, setValue] = useState<[number, number]>([low, high])
-  useEffect(() => setValue([low, high]), [low, high])
   return (
     <div className="px-1 pt-2">
       <RangeSlider min={min} max={max} step={step} value={value} onValueChange={setValue} onValueCommit={([a, b]) => onCommit(a, b)} />
@@ -73,6 +72,7 @@ function SpecFacet({ facet, params, update }: { facet: Facet; params: Params; up
     return (
       <Section title={title}>
         <Range
+          key={`${params.get(minKey)}-${params.get(maxKey)}-${min}-${max}`}
           min={min} max={max} step={max - min > 100 ? Math.round((max - min) / 50) : (max - min) / 50}
           low={Number(params.get(minKey) ?? min)} high={Number(params.get(maxKey) ?? max)}
           format={(n) => `${faNumber(Math.round(n * 10) / 10)} ${facet.unit}`}
@@ -123,6 +123,7 @@ export function FilterPanel({ facets, params, update, showSpecs }: {
       {priceMax > priceMin && (
         <Section title="محدوده‌ی قیمت">
           <Range
+            key={`${params.get('min_price')}-${params.get('max_price')}-${priceMin}-${priceMax}`}
             min={priceMin} max={priceMax} step={Math.max(10_000, Math.round((priceMax - priceMin) / 100 / 10_000) * 10_000)}
             low={Number(params.get('min_price') ?? priceMin)} high={Number(params.get('max_price') ?? priceMax)}
             format={(n) => `${faNumber(rialToToman(n))} ت`}

@@ -8,7 +8,6 @@ import { Link, useNavigate, useParams } from 'react-router'
 import { toast } from 'sonner'
 
 import { Container } from '@/components/layout/app-layout'
-import { useWishlistToggle } from '@/components/product/product-card'
 import { ProductCarousel } from '@/components/product/product-grid'
 import { Button } from '@/components/ui/button'
 import { Card } from '@/components/ui/card'
@@ -17,6 +16,7 @@ import { EmptyState, SectionTitle, Stars } from '@/components/ui/misc'
 import { Price } from '@/components/ui/price'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Chip, Sticker } from '@/components/ui/sticker'
+import { useWishlistToggle } from '@/hooks/use-wishlist-toggle'
 import { errorMessage } from '@/lib/api'
 import { flyToCart } from '@/lib/fly-to-cart'
 import { faNumber, jalaliDate } from '@/lib/format'
@@ -40,12 +40,11 @@ const sellable = (v: ProductVariant) => v.availability !== 'out_of_stock'
 /** Variant picking: an option is enabled when some in-stock variant has it together with the
     other current choices; choosing an option that breaks the combination jumps to the best variant with it. */
 function useVariantPicker(product: ProductDetail | undefined) {
-  const [selection, setSelection] = useState<Selection>({})
-  useEffect(() => {
-    if (!product?.variants.length) return
-    const initial = product.variants.find(sellable) ?? product.variants[0]
-    setSelection(selectionOf(initial))
-  }, [product])
+  // The picked options belong to one product; another product starts from its first sellable variant.
+  const [picked, setPicked] = useState<{ slug: string; selection: Selection } | null>(null)
+  const initial = product?.variants.find(sellable) ?? product?.variants[0]
+  const selection: Selection = picked && picked.slug === product?.slug ? picked.selection : initial ? selectionOf(initial) : {}
+  const setSelection = (next: Selection) => product && setPicked({ slug: product.slug, selection: next })
 
   const variant = product?.variants.find((v) => matches(v, selection) && v.options.length === Object.keys(selection).length)
     ?? (product?.variants.length === 1 ? product.variants[0] : undefined)
@@ -78,8 +77,10 @@ function Gallery({ product, variant }: { product: ProductDetail; variant?: Produ
     const general = product.images.filter((i) => i.variant === null)
     return own.length ? [...own, ...general] : general.length ? general : product.images
   }, [product.images, variant])
-  const [index, setIndex] = useState(0)
-  useEffect(() => setIndex(0), [images])
+  const imagesKey = images.map((i) => i.id).join()
+  const [shown, setShown] = useState({ key: imagesKey, index: 0 })
+  const index = shown.key === imagesKey ? shown.index : 0
+  const setIndex = (i: number) => setShown({ key: imagesKey, index: i })
   const current = images[index]
 
   return (
@@ -144,14 +145,14 @@ function Countdown({ until }: { until: string }) {
 function Purchase({ product, picker }: { product: ProductDetail; picker: ReturnType<typeof useVariantPicker> }) {
   const { variant, selection, optionState, choose } = picker
   const navigate = useNavigate()
-  const [quantity, setQuantity] = useState(1)
+  const [chosenQuantity, setChosenQuantity] = useState({ variant: 0, quantity: 1 })
+  const quantity = chosenQuantity.variant === variant?.id ? chosenQuantity.quantity : 1
+  const setQuantity = (update: (q: number) => number) => setChosenQuantity({ variant: variant?.id ?? 0, quantity: update(quantity) })
   const addToCart = useAddToCart()
   const button = useRef<HTMLButtonElement>(null)
   const wishlist = useWishlistToggle()
   const liked = wishlist.isLiked(product.id)
   const available = variant && variant.availability !== 'out_of_stock'
-
-  useEffect(() => setQuantity(1), [variant?.id])
 
   const add = () => {
     if (!variant) return

@@ -1,54 +1,50 @@
 import { createBrowserRouter } from 'react-router'
+import type { ComponentType } from 'react'
 
 import { AppLayout, RequireAuth } from '@/components/layout/app-layout'
-import { CartPage } from '@/pages/cart'
-import { CheckoutPage } from '@/pages/checkout'
 import { HomePage } from '@/pages/home'
 import { ListingPage } from '@/pages/listing'
-import { LoginPage } from '@/pages/login'
-import { NotFoundPage } from '@/pages/not-found'
-import { PaymentResultPage } from '@/pages/payment-result'
 import { ProductPage } from '@/pages/product'
-import { AddressesPage } from '@/pages/profile/addresses'
-import { OrderDetailPage } from '@/pages/profile/order-detail'
-import { OrdersPage } from '@/pages/profile/orders'
-import { ProfileInfoPage } from '@/pages/profile/info'
-import { ProfileLayout } from '@/pages/profile/layout'
-import { WishlistPage } from '@/pages/profile/wishlist'
-import { StaticPage } from '@/pages/static'
+
+/** A route whose page module is loaded on first visit. */
+function page<T>(load: () => Promise<T>, pick: (module: T) => ComponentType<object>) {
+  return async () => ({ Component: pick(await load()) })
+}
 
 export const router = createBrowserRouter([
   {
     element: <AppLayout />,
+    // Shown while a lazily loaded page opened directly by URL is fetched.
+    HydrateFallback: () => <div className="min-h-dvh" />,
     children: [
       { index: true, element: <HomePage /> },
       { path: 'category/:slug', element: <ListingPage /> },
       { path: 'search', element: <ListingPage /> },
       { path: 'product/:slug', element: <ProductPage /> },
-      { path: 'cart', element: <CartPage /> },
-      { path: 'login', element: <LoginPage /> },
-      { path: 'payment/result', element: <PaymentResultPage /> },
-      { path: 'about', element: <StaticPage page="about" /> },
-      { path: 'contact', element: <StaticPage page="contact" /> },
-      { path: 'terms', element: <StaticPage page="terms" /> },
+      { path: 'cart', lazy: page(() => import('@/pages/cart'), (m) => m.CartPage) },
+      { path: 'login', lazy: page(() => import('@/pages/login'), (m) => m.LoginPage) },
+      { path: 'payment/result', lazy: page(() => import('@/pages/payment-result'), (m) => m.PaymentResultPage) },
+      { path: 'about', lazy: page(() => import('@/pages/static'), (m) => () => m.StaticPage({ page: 'about' })) },
+      { path: 'contact', lazy: page(() => import('@/pages/static'), (m) => () => m.StaticPage({ page: 'contact' })) },
+      { path: 'terms', lazy: page(() => import('@/pages/static'), (m) => () => m.StaticPage({ page: 'terms' })) },
       {
         element: <RequireAuth />,
         children: [
-          { path: 'checkout', element: <CheckoutPage /> },
+          { path: 'checkout', lazy: page(() => import('@/pages/checkout'), (m) => m.CheckoutPage) },
           {
             path: 'profile',
-            element: <ProfileLayout />,
+            lazy: page(() => import('@/pages/profile/layout'), (m) => m.ProfileLayout),
             children: [
-              { index: true, element: <ProfileInfoPage /> },
-              { path: 'orders', element: <OrdersPage /> },
-              { path: 'orders/:number', element: <OrderDetailPage /> },
-              { path: 'addresses', element: <AddressesPage /> },
-              { path: 'wishlist', element: <WishlistPage /> },
+              { index: true, lazy: page(() => import('@/pages/profile/info'), (m) => m.ProfileInfoPage) },
+              { path: 'orders', lazy: page(() => import('@/pages/profile/orders'), (m) => m.OrdersPage) },
+              { path: 'orders/:number', lazy: page(() => import('@/pages/profile/order-detail'), (m) => m.OrderDetailPage) },
+              { path: 'addresses', lazy: page(() => import('@/pages/profile/addresses'), (m) => m.AddressesPage) },
+              { path: 'wishlist', lazy: page(() => import('@/pages/profile/wishlist'), (m) => m.WishlistPage) },
             ],
           },
         ],
       },
-      { path: '*', element: <NotFoundPage /> },
+      { path: '*', lazy: page(() => import('@/pages/not-found'), (m) => m.NotFoundPage) },
     ],
   },
 ])

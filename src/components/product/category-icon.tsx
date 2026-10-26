@@ -6,11 +6,6 @@ const ICONS: Record<string, typeof Cpu> = {
   peripherals: Gamepad2, keyboard: Keyboard, mouse: Mouse, headset: Headphones,
 }
 
-/** Tile colours for the category grid, cycled by position. */
-export const CATEGORY_TONES = [
-  'bg-yellow text-[#0a0a0a]', 'bg-cyan text-[#0a0a0a]', 'bg-pink text-[#0a0a0a]', 'bg-blue text-white', 'bg-green text-[#0a0a0a]', 'bg-surface text-ink',
-]
-
 export function CategoryIcon({ slug, ...props }: { slug: string } & LucideProps) {
   const Icon = ICONS[slug] ?? Box
   return <Icon {...props} />

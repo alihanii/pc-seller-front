@@ -8,6 +8,7 @@ const tones = {
   blue: 'bg-blue text-white',
   pink: 'bg-pink text-[#0a0a0a]',
   green: 'bg-green text-[#0a0a0a]',
+  cyan: 'bg-cyan text-[#0a0a0a]',
   dark: 'bg-ink text-bg',
 }
 

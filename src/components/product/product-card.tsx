@@ -1,43 +1,16 @@
 import { Heart, PackageX } from 'lucide-react'
 import { motion } from 'motion/react'
-import { Link, useNavigate } from 'react-router'
-import { toast } from 'sonner'
+import { Link } from 'react-router'
 
 import { Price } from '@/components/ui/price'
 import { Skeleton } from '@/components/ui/skeleton'
 import { Stars } from '@/components/ui/misc'
 import { Sticker } from '@/components/ui/sticker'
 import { faNumber } from '@/lib/format'
-import { useToggleWishlist, useWishlist } from '@/lib/queries'
+import { useWishlistToggle } from '@/hooks/use-wishlist-toggle'
+import { cardMotion } from '@/lib/motion'
 import type { ProductCard as Product } from '@/lib/types'
 import { cn } from '@/lib/utils'
-import { useAuth } from '@/stores/auth'
-
-export const cardMotion = {
-  hidden: { opacity: 0, y: 18 },
-  show: { opacity: 1, y: 0, transition: { type: 'spring' as const, stiffness: 420, damping: 30 } },
-}
-
-export function useWishlistToggle() {
-  const access = useAuth((s) => s.access)
-  const { data } = useWishlist()
-  const toggle = useToggleWishlist()
-  const navigate = useNavigate()
-  const liked = new Set(data?.results.map((p) => p.id))
-  return {
-    isLiked: (id: number) => liked.has(id),
-    toggle: (id: number) => {
-      if (!access) {
-        toast('برای ذخیره‌ی علاقه‌مندی‌ها وارد شوید.')
-        navigate('/login')
-        return
-      }
-      toggle.mutate({ productId: id, liked: liked.has(id) }, {
-        onSuccess: () => toast.success(liked.has(id) ? 'از علاقه‌مندی‌ها حذف شد' : 'به علاقه‌مندی‌ها اضافه شد'),
-      })
-    },
-  }
-}
 
 export function ProductCard({ product, className }: { product: Product; className?: string }) {
   const wishlist = useWishlistToggle()
