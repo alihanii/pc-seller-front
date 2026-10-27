@@ -37,7 +37,7 @@ export function ProfileLayout() {
   }
 
   return (
-    <Container className="grid items-start gap-6 pt-6 lg:grid-cols-[250px_minmax(0,1fr)]">
+    <Container className="grid grid-cols-1 items-start gap-6 pt-6 lg:grid-cols-[250px_minmax(0,1fr)]">
       <Card className="p-4 lg:sticky lg:top-44">
         <div className="mb-4 flex items-center gap-3 border-b-[length:var(--bw-soft)] border-line-soft pb-4">
           <span className="grid size-12 rotate-[-5deg] place-items-center rounded-lg border-brutal bg-pink font-display text-lg text-[#0a0a0a]">
@@ -53,14 +53,14 @@ export function ProfileLayout() {
             <NavLink
               key={to} to={to} end={end}
               className={({ isActive }) => cn(
-                'flex shrink-0 items-center gap-2.5 rounded-md border-2 px-3 py-2 text-sm font-bold transition-all',
+                'flex min-h-11 shrink-0 items-center gap-2.5 rounded-md border-2 px-3 py-2 text-sm font-bold transition-all',
                 isActive ? 'border-line bg-yellow text-[#0a0a0a] shadow-brutal-sm' : 'border-transparent hover:bg-surface-2',
               )}
             >
               <Icon className="size-4.5" />{label}
             </NavLink>
           ))}
-          <button onClick={logout} className="flex shrink-0 items-center gap-2.5 rounded-md border-2 border-transparent px-3 py-2 text-sm font-bold text-red-ink hover:bg-red/10">
+          <button onClick={logout} className="flex min-h-11 shrink-0 items-center gap-2.5 rounded-md border-2 border-transparent px-3 py-2 text-sm font-bold text-red-ink hover:bg-red/10">
             <LogOut className="size-4.5" />خروج
           </button>
         </nav>

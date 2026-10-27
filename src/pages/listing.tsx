@@ -62,9 +62,9 @@ export function ListingPage() {
   return (
     <Container className="pt-6">
       <nav className="mb-3 flex flex-wrap items-center gap-1.5 text-sm text-muted" aria-label="مسیر">
-        <Link to="/" className="hover:text-ink">خانه</Link>
+        <Link to="/" className="inline-flex min-h-11 min-w-11 items-center justify-center hover:text-ink">خانه</Link>
         {category.data?.breadcrumb.map((c) => (
-          <span key={c.id} className="flex items-center gap-1.5"><ChevronLeft className="size-3.5" /><Link to={`/category/${c.slug}`} className="hover:text-ink">{c.name}</Link></span>
+          <span key={c.id} className="flex items-center gap-1.5"><ChevronLeft className="size-3.5" /><Link to={`/category/${c.slug}`} className="inline-flex min-h-11 items-center hover:text-ink">{c.name}</Link></span>
         ))}
         <ChevronLeft className="size-3.5" /><span className="font-bold text-ink">{title}</span>
       </nav>
@@ -90,7 +90,7 @@ export function ListingPage() {
         )}
       </div>
 
-      <div className="grid gap-6 lg:grid-cols-[270px_minmax(0,1fr)]">
+      <div className="grid grid-cols-1 gap-6 lg:grid-cols-[270px_minmax(0,1fr)]">
         <aside className="hidden lg:block">
           <Card tone="calm" className="sticky top-44 max-h-[calc(100dvh-12rem)] overflow-y-auto px-4 py-1">
             <FilterPanel facets={usableFacets} params={params} update={update} showSpecs={!!slug} />
@@ -110,7 +110,7 @@ export function ListingPage() {
                     key={value} role="radio" aria-checked={active}
                     onClick={() => update({ ordering: value === 'newest' ? null : value })}
                     className={cn(
-                      'shrink-0 rounded-md border-2 px-3 py-1.5 text-sm font-bold transition-all',
+                      'min-h-11 shrink-0 rounded-md border-2 px-3 py-1.5 text-sm font-bold transition-all',
                       active ? 'border-line bg-ink text-bg shadow-brutal-sm' : 'border-transparent hover:border-line-soft hover:bg-surface',
                     )}
                   >
@@ -165,9 +165,11 @@ export function ListingPage() {
 
       <Dialog open={filtersOpen} onOpenChange={setFiltersOpen} title="فیلترها" variant="drawer">
         <FilterPanel facets={usableFacets} params={params} update={update} showSpecs={!!slug} />
-        <Button className="sticky bottom-0 mt-4 w-full" onClick={() => setFiltersOpen(false)}>
-          نمایش {faNumber(products.data?.count ?? 0)} کالا
-        </Button>
+        <div className="sticky -bottom-5 -mx-5 mt-4 border-t-[length:var(--bw-soft)] border-line bg-surface px-5 py-4">
+          <Button className="w-full" onClick={() => setFiltersOpen(false)}>
+            نمایش {faNumber(products.data?.count ?? 0)} کالا
+          </Button>
+        </div>
       </Dialog>
     </Container>
   )

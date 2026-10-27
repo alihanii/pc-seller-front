@@ -77,7 +77,7 @@ export function OrderDetailPage() {
         )}
       </Card>
 
-      <div className="grid items-start gap-5 lg:grid-cols-[minmax(0,1fr)_320px]">
+      <div className="grid grid-cols-1 items-start gap-5 lg:grid-cols-[minmax(0,1fr)_320px]">
         <Card tone="calm" className="overflow-hidden">
           <h2 className="border-b-[length:var(--bw-soft)] border-line bg-surface-2 px-4 py-3 font-black">اقلام سفارش</h2>
           <ul>
@@ -115,7 +115,7 @@ export function OrderDetailPage() {
             <p>{order.shipping.method}</p>
             {order.shipping.tracking_code ? (
               <button
-                className="mt-2 flex w-full items-center justify-between rounded-md border-2 border-dashed border-line bg-cyan/20 px-3 py-2 font-black"
+                className="mt-2 flex min-h-11 w-full items-center justify-between rounded-md border-2 border-dashed border-line bg-cyan/20 px-3 py-2 font-black"
                 onClick={() => navigator.clipboard?.writeText(order.shipping.tracking_code).then(() => toast('کد رهگیری کپی شد'))}
               >
                 <span>کد رهگیری: <bdi dir="ltr">{order.shipping.tracking_code}</bdi></span><Copy className="size-4" />

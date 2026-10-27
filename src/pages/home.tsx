@@ -77,7 +77,7 @@ function HeroSlider({ banners }: { banners: Banner[] }) {
             aria-selected={i === index}
             aria-label={b.title}
             onClick={() => setIndex(i)}
-            className={cn("relative h-3 rounded-sm border-2 border-black transition-all duration-200 after:absolute after:-inset-3 after:content-['']", i === index ? 'w-9 bg-yellow' : 'w-3 bg-white/80 hover:bg-white')}
+            className={cn("relative h-3 rounded-sm border-2 border-black transition-all duration-200 after:absolute after:-inset-4 after:content-['']", i === index ? 'w-9 bg-yellow' : 'w-3 bg-white/80 hover:bg-white')}
           />
         ))}
       </div>
@@ -90,7 +90,7 @@ function Hero() {
   const { data: side } = useBanners('below_hero')
   if (isLoading) return <Skeleton className="h-[340px] w-full rounded-brutal sm:h-[420px]" />
   return (
-    <div className="grid gap-5 lg:grid-cols-[1fr_300px]">
+    <div className="grid grid-cols-1 gap-5 lg:grid-cols-[minmax(0,1fr)_300px]">
       {hero && hero.length > 0 && <HeroSlider banners={hero} />}
       <div className="grid grid-cols-2 gap-5 lg:grid-cols-1">
         {side?.slice(0, 2).map((banner, i) => (
@@ -151,7 +151,7 @@ function BrandStrip() {
     <section className="-mx-4 rotate-[-1.2deg] border-y-[length:var(--bw)] border-line bg-yellow py-4 text-[#0a0a0a]">
       <Marquee>
         {brands.map((brand) => (
-          <Link key={brand.id} to={`/search?brand=${brand.slug}`} className="whitespace-nowrap text-2xl font-black tracking-tight uppercase hover:text-blue-ink" dir="ltr">
+          <Link key={brand.id} to={`/search?brand=${brand.slug}`} className="whitespace-nowrap py-2 text-2xl font-black tracking-tight uppercase hover:text-blue-ink" dir="ltr">
             {brand.name} <span aria-hidden>✦</span>
           </Link>
         ))}

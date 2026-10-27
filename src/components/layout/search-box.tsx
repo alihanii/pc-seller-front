@@ -43,7 +43,7 @@ export function SearchBox({ className, onDone }: { className?: string; onDone?: 
           e.preventDefault()
           submit()
         }}
-        className="flex h-12 items-center gap-2 rounded-brutal-sm border-brutal bg-surface ps-4 pe-1.5 shadow-brutal-sm transition-shadow focus-within:shadow-brutal"
+        className="flex h-13 items-center gap-2 rounded-brutal-sm border-brutal bg-surface ps-4 pe-1 shadow-brutal-sm transition-shadow focus-within:shadow-brutal"
       >
         <Search className="size-5 shrink-0 text-muted" aria-hidden />
         <input
@@ -66,7 +66,7 @@ export function SearchBox({ className, onDone }: { className?: string; onDone?: 
           className="h-full min-w-0 flex-1 bg-transparent text-[15px] font-medium outline-none placeholder:text-muted/70"
         />
         {isFetching && debounced.length >= 2 && <Loader2 className="size-4 animate-spin text-muted" />}
-        <button type="submit" className="h-10 rounded-md border-brutal-soft bg-yellow px-3.5 text-sm font-black text-[#0a0a0a] transition-transform active:translate-y-0.5">
+        <button type="submit" className="h-11 rounded-md border-brutal-soft bg-yellow px-3.5 text-sm font-black text-[#0a0a0a] transition-transform active:translate-y-0.5">
           بگرد
         </button>
       </form>

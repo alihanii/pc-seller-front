@@ -138,9 +138,9 @@ export function LoginPage() {
   if (alreadyLoggedIn) return <Navigate to={next} replace />
 
   return (
-    <Container className="grid min-h-[70dvh] place-items-center py-10">
+    <Container className="grid min-h-[70dvh] grid-cols-1 place-items-center py-10">
       <div className="relative w-full max-w-md">
-        <Sticker tone="pink" tilt={8} className="absolute -top-4 -left-3 z-10 text-sm">بدون رمز عبور!</Sticker>
+        <Sticker tone="pink" tilt={8} className="absolute -top-4 left-2 z-10 text-sm sm:-left-3">بدون رمز عبور!</Sticker>
         <Card className="overflow-hidden p-0">
           <div className="border-b-[length:var(--bw)] border-line bg-yellow px-6 py-5 text-[#0a0a0a]">
             <span className="grid size-12 place-items-center rounded-lg border-brutal bg-surface text-ink shadow-brutal-sm">
@@ -170,7 +170,7 @@ export function LoginPage() {
                     <input
                       autoFocus inputMode="tel" autoComplete="tel" dir="ltr" placeholder="۰۹۱۲ ۱۲۳ ۴۵۶۷"
                       value={mobile} onChange={(e) => setMobile(toFaDigits(e.target.value))}
-                      className="h-14 rounded-brutal-sm border-brutal bg-surface px-4 text-center font-display text-2xl tracking-[0.15em] shadow-brutal-sm placeholder:text-muted/40 focus:shadow-brutal focus:outline-none"
+                      className="h-14 w-full min-w-0 rounded-brutal-sm border-brutal bg-surface px-4 text-center font-display text-2xl tracking-[0.15em] shadow-brutal-sm placeholder:text-muted/40 focus:shadow-brutal focus:outline-none"
                     />
                   </label>
                   {error && <p className="text-sm font-bold text-red-ink" role="alert">{error}</p>}

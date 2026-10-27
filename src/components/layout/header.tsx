@@ -21,7 +21,7 @@ const PROMOS = ['ارسال رایگان سفارش‌های بالای ۳۰ م�
 
 export function Logo({ className }: { className?: string }) {
   return (
-    <Link to="/" className={cn('group flex items-center gap-2', className)} aria-label="پی‌سی‌سلر، صفحه‌ی اصلی">
+    <Link to="/" className={cn('group flex min-h-11 items-center gap-2', className)} aria-label="پی‌سی‌سلر، صفحه‌ی اصلی">
       <span className="grid size-10 rotate-[-6deg] place-items-center rounded-lg border-brutal bg-yellow font-black text-[#0a0a0a] shadow-brutal-sm transition-transform duration-200 group-hover:rotate-[4deg]" dir="ltr">
         PC
       </span>
@@ -74,13 +74,13 @@ export function Header() {
         </Marquee>
       </div>
       <div className="border-b-[length:var(--bw)] border-line">
-        <div className="mx-auto flex max-w-7xl items-center gap-3 px-4 py-3 lg:gap-6">
+        <div className="mx-auto flex max-w-7xl items-center gap-2 px-4 py-3 sm:gap-3 lg:gap-6">
           <Button variant="outline" size="icon" className="lg:hidden" onClick={() => setMenuOpen(true)} aria-label="منو">
             <Menu className="size-5" />
           </Button>
           <Logo />
-          <SearchBox className="hidden flex-1 md:block" />
-          <div className="ms-auto flex items-center gap-2.5 md:ms-0">
+          <SearchBox className="hidden min-w-0 flex-1 md:block" />
+          <div className="ms-auto flex shrink-0 items-center gap-2 md:ms-0 lg:gap-2.5">
             <Button variant="outline" size="icon" onClick={toggle} aria-label={theme === 'dark' ? 'حالت روشن' : 'حالت تیره'} className="hidden sm:inline-flex">
               {theme === 'dark' ? <Sun className="size-5" /> : <Moon className="size-5" />}
             </Button>
@@ -91,10 +91,10 @@ export function Header() {
             )}
             <Link
               to={access ? '/profile' : '/login'}
-              className={cn(buttonVariants({ variant: access ? 'outline' : 'blue', size: 'md' }), 'max-sm:size-11 max-sm:px-0')}
+              className={cn(buttonVariants({ variant: access ? 'outline' : 'blue', size: 'md' }), 'max-lg:size-11 max-lg:px-0')}
             >
               <User className="size-5" />
-              <span className="hidden sm:inline">{access ? 'حساب من' : 'ورود | ثبت‌نام'}</span>
+              <span className="hidden lg:inline">{access ? 'حساب من' : 'ورود | ثبت‌نام'}</span>
             </Link>
             <CartButton />
           </div>
@@ -107,7 +107,7 @@ export function Header() {
                 <NavLink
                   to={`/category/${category.slug}`}
                   className={({ isActive }) => cn(
-                    'flex items-center gap-1.5 rounded-md border-2 border-transparent px-3 py-1.5 text-sm font-bold transition-all hover:border-line hover:bg-yellow hover:text-[#0a0a0a] hover:shadow-brutal-sm',
+                    'flex min-h-11 items-center gap-1.5 rounded-md border-2 border-transparent px-3 py-1.5 text-sm font-bold transition-all hover:border-line hover:bg-yellow hover:text-[#0a0a0a] hover:shadow-brutal-sm',
                     isActive && 'border-line bg-yellow text-[#0a0a0a] shadow-brutal-sm',
                   )}
                 >
@@ -130,7 +130,7 @@ export function Header() {
                 <ul className="mt-2 flex flex-wrap gap-2 ps-4">
                   {category.children.map((child) => (
                     <li key={child.id}>
-                      <Link to={`/category/${child.slug}`} onClick={() => setMenuOpen(false)} className="block rounded-md border-hairline px-3 py-1.5 text-sm font-bold">{child.name}</Link>
+                      <Link to={`/category/${child.slug}`} onClick={() => setMenuOpen(false)} className="flex min-h-11 items-center rounded-md border-hairline px-3.5 text-sm font-bold">{child.name}</Link>
                     </li>
                   ))}
                 </ul>

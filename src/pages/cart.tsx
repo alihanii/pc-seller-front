@@ -37,7 +37,7 @@ function Line({ item }: { item: CartItem }) {
             <p className="flex items-center gap-1 text-xs font-black text-red-ink"><AlertTriangle className="size-3.5" />{item.warning}</p>
           )}
           <div className="mt-auto flex flex-wrap items-end justify-between gap-3">
-            <div className="flex h-11 items-center rounded-brutal-sm border-brutal-soft bg-surface" aria-label="تعداد">
+            <div className="flex h-12 items-center rounded-brutal-sm border-brutal-soft bg-surface" aria-label="تعداد">
               <button className="grid h-full w-11 place-items-center hover:bg-surface-2" onClick={() => setQuantity(item.quantity + 1)} disabled={update.isPending} aria-label="افزایش">
                 <Plus className="size-4" />
               </button>
@@ -97,8 +97,8 @@ export function DiscountBox({ cart }: { cart: Cart }) {
         })
       }}
     >
-      <Input value={code} onChange={(e) => setCode(e.target.value)} placeholder="کد تخفیف" dir="ltr" className="h-10 text-center font-bold uppercase" />
-      <Button type="submit" variant="outline" size="sm" className="h-10" loading={apply.isPending} disabled={!code.trim()}>اعمال</Button>
+      <Input value={code} onChange={(e) => setCode(e.target.value)} placeholder="کد تخفیف" dir="ltr" className="h-11 text-center font-bold uppercase" />
+      <Button type="submit" variant="outline" size="sm" className="h-11" loading={apply.isPending} disabled={!code.trim()}>اعمال</Button>
     </form>
   )
 }
@@ -144,7 +144,7 @@ export function CartPage() {
   return (
     <Container className="pt-6">
       <h1 className="mb-6 font-display text-3xl">سبد خرید <span className="text-lg text-muted">({faNumber(cart.items_count)} کالا)</span></h1>
-      <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,1fr)_360px]">
+      <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-[minmax(0,1fr)_360px]">
         <ul className="flex flex-col gap-3">
           <AnimatePresence initial={false}>
             {cart.items.map((item) => <Line key={item.id} item={item} />)}

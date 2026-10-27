@@ -202,7 +202,7 @@ function Purchase({ product, picker }: { product: ProductDetail; picker: ReturnT
                     onClick={() => choose(type.id, option.id)}
                     aria-pressed={active}
                     className={cn(
-                      'min-w-16 rounded-brutal-sm border-brutal-soft px-4 py-2 text-sm font-black transition-all duration-150',
+                      'min-h-11 min-w-16 rounded-brutal-sm border-brutal-soft px-4 py-2 text-sm font-black transition-all duration-150',
                       active ? 'bg-yellow text-[#0a0a0a] shadow-brutal-sm' : 'bg-surface hover:bg-surface-2',
                       unavailable && 'text-muted line-through decoration-2',
                     )}
@@ -239,7 +239,7 @@ function Purchase({ product, picker }: { product: ProductDetail; picker: ReturnT
         ) : (
           <p className="font-bold text-muted">ترکیب انتخاب‌شده موجود نیست؛ گزینه‌ی دیگری را انتخاب کنید.</p>
         )}
-        <div className="flex gap-3">
+        <div className="flex flex-wrap gap-3">
           <div className="flex h-14 items-center rounded-brutal-sm border-brutal-soft bg-surface" aria-label="تعداد">
             <button className="grid h-full w-11 place-items-center hover:bg-surface-2 disabled:opacity-40" onClick={() => setQuantity((q) => q + 1)} disabled={!available} aria-label="افزایش">
               <Plus className="size-4" />
@@ -249,7 +249,7 @@ function Purchase({ product, picker }: { product: ProductDetail; picker: ReturnT
               <Minus className="size-4" />
             </button>
           </div>
-          <Button ref={button} size="lg" className="flex-1" onClick={add} disabled={!available} loading={addToCart.isPending}>
+          <Button ref={button} size="lg" className="order-last w-full min-[420px]:order-none min-[420px]:w-auto min-[420px]:flex-1" onClick={add} disabled={!available} loading={addToCart.isPending}>
             <ShoppingCart className="size-5" /> {available ? 'افزودن به سبد' : 'ناموجود'}
           </Button>
           <Button variant="outline" size="icon" className="size-14" onClick={() => wishlist.toggle(product.id)} aria-pressed={liked} aria-label="علاقه‌مندی">
@@ -280,7 +280,7 @@ function Reviews({ product }: { product: ProductDetail }) {
   const [body, setBody] = useState('')
 
   return (
-    <section className="grid gap-6 lg:grid-cols-[1fr_360px]">
+    <section className="grid grid-cols-1 gap-6 lg:grid-cols-[minmax(0,1fr)_360px]">
       <div>
         <SectionTitle title="نظر خریداران" kicker="REVIEWS" />
         {product.rating != null && (
@@ -377,12 +377,12 @@ export function ProductPage() {
     <Container className="space-y-14 pt-6">
       <div>
         <nav className="mb-5 flex flex-wrap items-center gap-1.5 text-sm text-muted" aria-label="مسیر">
-          <Link to="/" className="hover:text-ink">خانه</Link>
+          <Link to="/" className="inline-flex min-h-11 min-w-11 items-center justify-center hover:text-ink">خانه</Link>
           {product.breadcrumb.map((c) => (
-            <span key={c.id} className="flex items-center gap-1.5"><ChevronLeft className="size-3.5" /><Link to={`/category/${c.slug}`} className="hover:text-ink">{c.name}</Link></span>
+            <span key={c.id} className="flex items-center gap-1.5"><ChevronLeft className="size-3.5" /><Link to={`/category/${c.slug}`} className="inline-flex min-h-11 items-center hover:text-ink">{c.name}</Link></span>
           ))}
         </nav>
-        <div className="grid gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-12">
+        <div className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1fr)_minmax(0,1.05fr)] lg:gap-12">
           <Gallery product={product} variant={picker.variant} />
           <div className="flex flex-col gap-5">
             <div>
@@ -401,7 +401,7 @@ export function ProductPage() {
         </div>
       </div>
 
-      <section className="grid gap-8 lg:grid-cols-[1.4fr_1fr]">
+      <section className="grid grid-cols-1 gap-8 lg:grid-cols-[minmax(0,1.4fr)_minmax(0,1fr)]">
         <div>
           <SectionTitle title="مشخصات فنی" kicker="SPECS" />
           <Card tone="calm" className="overflow-hidden">

@@ -60,7 +60,7 @@ export function PaymentResultPage() {
   if (access && isLoading) return <Container className="pt-10"><Skeleton className="mx-auto h-80 max-w-lg rounded-brutal" /></Container>
 
   return (
-    <Container className="grid place-items-center pt-10">
+    <Container className="grid grid-cols-1 place-items-center pt-10">
       <Card className={cn('relative w-full max-w-lg overflow-hidden p-0', success ? 'bg-green/10' : '')}>
         {success && <Confetti />}
         <div className={cn('flex flex-col items-center gap-3 border-b-[length:var(--bw)] border-line px-6 py-8 text-center', success ? 'bg-green' : needsRefund ? 'bg-yellow' : 'bg-red')}>

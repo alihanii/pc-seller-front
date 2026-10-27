@@ -24,7 +24,7 @@ export function OrdersPage() {
           <button
             key={value} role="tab" aria-selected={status === value}
             onClick={() => setParams(value ? { status: value } : {})}
-            className={cn('shrink-0 rounded-md border-2 px-3 py-1.5 text-sm font-bold transition-all', status === value ? 'border-line bg-ink text-bg shadow-brutal-sm' : 'border-line-soft bg-surface hover:border-line')}
+            className={cn('min-h-11 shrink-0 rounded-md border-2 px-3 py-1.5 text-sm font-bold transition-all', status === value ? 'border-line bg-ink text-bg shadow-brutal-sm' : 'border-line-soft bg-surface hover:border-line')}
           >
             {label}
           </button>

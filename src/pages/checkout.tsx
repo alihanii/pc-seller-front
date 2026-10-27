@@ -104,7 +104,7 @@ export function CheckoutPage() {
   return (
     <Container className="pt-6">
       <h1 className="mb-6 font-display text-3xl">تسویه‌حساب</h1>
-      <div className="grid items-start gap-6 lg:grid-cols-[minmax(0,1fr)_380px]">
+      <div className="grid grid-cols-1 items-start gap-6 lg:grid-cols-[minmax(0,1fr)_380px]">
         <div className="flex flex-col gap-5">
           <Step n={1} title="آدرس تحویل">
             {addresses?.length ? (

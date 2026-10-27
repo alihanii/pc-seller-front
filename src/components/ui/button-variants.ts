@@ -20,7 +20,7 @@ export const buttonVariants = cva(
         ghost: 'border-transparent bg-transparent shadow-none hover:translate-0 hover:bg-surface-2 hover:shadow-none active:translate-0',
       },
       size: {
-        sm: 'h-10 px-3.5 text-sm',
+        sm: 'h-11 px-3.5 text-sm lg:h-10',
         md: 'h-11 px-5 text-[15px]',
         lg: 'h-14 px-7 text-lg',
         icon: 'size-11 p-0',

@@ -40,9 +40,9 @@ function Range({ min, max, low, high, step, format, onCommit }: {
   return (
     <div className="px-1 pt-2">
       <RangeSlider min={min} max={max} step={step} value={value} onValueChange={setValue} onValueCommit={([a, b]) => onCommit(a, b)} />
-      <div className="mt-3 flex justify-between text-xs font-bold tabular-nums">
-        <span className="rounded-md border-hairline bg-surface-2 px-2 py-1">از {format(value[0])}</span>
-        <span className="rounded-md border-hairline bg-surface-2 px-2 py-1">تا {format(value[1])}</span>
+      <div className="mt-3 flex flex-wrap justify-between gap-1.5 text-xs font-bold tabular-nums">
+        <span className="whitespace-nowrap rounded-md border-hairline bg-surface-2 px-2 py-1">از {format(value[0])}</span>
+        <span className="whitespace-nowrap rounded-md border-hairline bg-surface-2 px-2 py-1">تا {format(value[1])}</span>
       </div>
     </div>
   )

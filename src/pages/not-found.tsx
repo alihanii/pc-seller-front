@@ -8,7 +8,7 @@ import { Sticker } from '@/components/ui/sticker'
 
 export function NotFoundPage() {
   return (
-    <Container className="grid place-items-center py-20 text-center">
+    <Container className="grid grid-cols-1 place-items-center py-20 text-center">
       <div className="relative">
         <motion.h1
           initial={{ rotate: -20, scale: 0.6, opacity: 0 }} animate={{ rotate: -4, scale: 1, opacity: 1 }}

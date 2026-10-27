@@ -34,7 +34,7 @@ export function StaticPage({ page }: { page: keyof typeof PAGES }) {
   return (
     <Container className="max-w-3xl pt-10">
       <div className="relative">
-        <Sticker tone="cyan" tilt={-7} className="absolute -top-3 left-6 z-10 text-sm">{content.sticker}</Sticker>
+        <Sticker tone="cyan" tilt={-7} className="absolute -top-3 left-4 z-10 text-sm sm:left-6">{content.sticker}</Sticker>
         <Card className="p-6 sm:p-10">
           <h1 className="mb-6 font-display text-4xl">{content.title}</h1>
           <div className="space-y-4 text-[15px] leading-8">{content.body.map((p) => <p key={p}>{p}</p>)}</div>
