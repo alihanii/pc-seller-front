@@ -7,7 +7,7 @@ import { chromium } from 'playwright-core'
 import { demoTokens } from './dev-auth.mjs'
 
 const BASE = process.env.BASE_URL ?? 'http://127.0.0.1:5173'
-const out = process.argv[2] ?? '../docs/screenshots'
+const out = process.argv[2] ?? 'docs/screenshots'
 const only = process.argv.slice(3)
 mkdirSync(out, { recursive: true })
 

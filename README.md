@@ -1,4 +1,12 @@
-# PC Seller — storefront
+# PC Seller — Storefront (React)
+
+**فارسی**: فرانت‌اند فروشگاه قطعات کامپیوتر با React، TypeScript و Vite؛ راست‌به‌چپ، اعداد و تاریخ فارسی، قیمت‌ها به تومان.
+بک‌اند در مخزن `pc-seller-back` است. برای اجرا: `npm install`، فایل `.env.example` را به `.env` کپی کنید و `npm run dev`
+(بک‌اند باید روی پورت ۸۰۰۰ اجرا باشد). روی سرور، این مخزن کنار `pc-seller-back` کلون می‌شود و `docker compose` در
+`pc-seller-back/deploy` آن را می‌سازد (راهنما در README بک‌اند).
+
+**English** below.
+
 
 React 19 + TypeScript + Vite, Tailwind CSS v4, React Router, TanStack Query, Zustand, axios, Motion, Radix primitives,
 lucide icons and the Vazirmatn font. Right-to-left Persian UI, Persian digits, prices in toman (the API stores rial),
@@ -10,6 +18,7 @@ cp .env.example .env   # VITE_API_URL, defaults to http://127.0.0.1:8000/api
 npm run dev            # http://127.0.0.1:5173 (the backend must be running)
 npm run build          # type-check and production build
 npm run lint
+npm run test:responsive  # every route at 360–1440px, fails on horizontal overflow (servers must be running)
 ```
 
 For a populated store run `python manage.py seed_demo` in `backend/`.
@@ -40,4 +49,11 @@ Motion is short (150–300 ms) and respects `prefers-reduced-motion`.
 - `src/pages` — routes (secondary pages are loaded on demand)
 
 `scripts/screenshots.mjs` captures pages with the locally installed Google Chrome; the screenshots in
-`../docs/screenshots` were taken with demo data.
+`docs/screenshots` were taken with demo data.
+
+## Deployment
+
+`Dockerfile` builds the app with `VITE_API_URL=/api` and serves it with nginx (`docker/nginx.conf`), which also
+proxies `/api`, `/admin` and `/bankgateways` to the Django container and serves `/static` and `/media` from volumes
+shared with it. It is built by the compose file in the backend repository: clone this repository next to
+`pc-seller-back` and run `docker compose up -d --build` in `pc-seller-back/deploy` (see that README).
